@@ -23,6 +23,23 @@ namespace HairSalon
         List<Stylist> AllStylists = Stylist.GetAll();
         return View["stylists.cshtml", AllStylists];
       };
+
+      Get["/stylists/delete_all"] = _ => {
+        Stylist.DeleteAll();
+        List<Stylist> AllStylists = Stylist.GetAll();
+        return View["stylists.cshtml", AllStylists];
+      };
+
+      Get["/stylists/{id}"] = parameters => {
+        Dictionary<string, object> model = new Dictionary<string, object>;
+        Stylist SelectedStylist = Stylist.Find(parameters.id);
+        List<Client> StylistClient = SelectedStylist.GetClients();
+        List<stylist> Allstylists = Stylist.GetAll();
+        model.Add("stylist", SelectedStylist);
+        model.Add("clients", StylistClient);
+        model.Add("stylists", AllStylists);
+        Return View["clients.cshtml", model];
+      };
     }
   }
 }
