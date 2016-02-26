@@ -39,15 +39,14 @@ namespace HairSalon
     {
       //Arrange
       Stylist testStylist = new Stylist ("john");
-      Stylist otherStylist = new Stylist("sarah");
       testStylist.Save();
 
       //Act
       List<Stylist> result = Stylist.GetAll();
-      List<Stylist> testList = new List<Stylist>{testStylist};
+      List<Stylist> testlist = new List<Stylist>{testStylist};
 
       //Assert
-      Assert.Equal(testList[0].GetName(), result[0].GetName());
+      Assert.Equal(testlist, result);
     }
 
     [Fact]

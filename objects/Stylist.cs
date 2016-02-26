@@ -51,7 +51,7 @@ namespace HairSalon
     SqlDataReader rdr = null;
     conn.Open();
 
-    SqlCommand cmd = new SqlCommand("select * from clients;", conn);
+    SqlCommand cmd = new SqlCommand("select * from stylists;", conn);
     rdr = cmd.ExecuteReader();
 
     while(rdr.Read())
