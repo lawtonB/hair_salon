@@ -1,0 +1,27 @@
+@if (@Model.Count == 0)
+{
+  <p>
+    no stylists added yet
+  </p>
+}
+
+<ul>
+  @foreach (var stylist in @Model)
+  {
+    <li>
+      <a href="/stylists/@stylist.GetId()">@stylist.GetName()</a>
+      <a href="/stylist/edit/@stylist.GetId()">Edit stylist</a>
+      <form action="/stylist/delete/@stylist.GetId()" method="post">
+          <input type="hidden" name="_method" value="DELETE">
+          <br>
+          <button type="submit" name="button">delete</button>
+      </form>
+    </li>
+  }
+</ul>
+<br>
+<form class="stylist" action="/stylists/new" method="post">
+  <label for="name">Name</label>
+  <input id="stylist-name" name="stylist-name" type="text">
+  <button type="submit">Add Stylist</button>
+</form>
