@@ -7,7 +7,7 @@ namespace HairSalon
   public class Stylist
   {
     private int _id;
-    private string _name
+    private string _name;
 
     public Stylist(string Name, int Id = 0)
     {
@@ -79,7 +79,7 @@ namespace HairSalon
       SqlDataReader rdr;
       conn.Open();
 
-      SqlCommand cmd = new SqlCommand("insert into stylists (name) output inserted.id values (@StylistName);", conn);
+      SqlCommand cmd = new SqlCommand("INSERT INTO stylists (name) OUTPUT INSERTED.id VALUES (@StylistName);", conn);
 
       SqlParameter nameParameter = new SqlParameter();
       nameParameter.ParameterName = "@StylistName";
@@ -114,7 +114,7 @@ namespace HairSalon
       SqlConnection conn = DB.Connection();
       conn.Open();
 
-      sqlCommand cmd = new SqlCommand("DELETE from stylists WHERE id = @StylistId; DELETE from clients WHERE client_id = @StylistId;", conn);
+      SqlCommand cmd = new SqlCommand("DELETE from stylists WHERE id = @StylistId; DELETE from clients WHERE client_id = @StylistId;", conn);
 
       SqlParameter stylistIdParameter = new SqlParameter();
       stylistIdParameter.ParameterName = "@StylistId";
@@ -125,14 +125,14 @@ namespace HairSalon
 
       if (conn != null)
       {
-        conn.Close()
+        conn.Close();
       }
     }
     public static Stylist Find(int id)
       {
         SqlConnection conn = DB.Connection();
         SqlDataReader rdr = null;
-        Conn.Open();
+        conn.Open();
 
         SqlCommand cmd = new SqlCommand("SELECT * FROM stylists WHERE id = @StylistId;", conn);
         SqlParameter stylistIdParameter = new SqlParameter();
@@ -168,11 +168,11 @@ namespace HairSalon
       SqlDataReader rdr = null;
       conn.Open();
 
-      SqlCommand cmd = new SqlCommand("UPDATE stylists SET stylist_type = @newStylistName OUTPUT INSERTED.stylist_type WHERE id = @StylistId;", conn);
+      SqlCommand cmd = new SqlCommand("UPDATE stylists SET name = @newStylistName OUTPUT INSERTED.name WHERE id = @StylistId;", conn);
 
       SqlParameter newStylistParameter = new SqlParameter();
-      newStylistParameter.ParameterName = "@NewStylist";
-      newStylistParameter.Value = newStylist;
+      newStylistParameter.ParameterName = "@NewStylistName";
+      newStylistParameter.Value = newStylistName;
       cmd.Parameters.Add(newStylistParameter);
 
 
