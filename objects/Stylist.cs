@@ -42,6 +42,7 @@ namespace HairSalon
     {
       _name = newName;
     }
+
     public static List<Stylist> GetAll()
     {
     List<Stylist> allStylists = new List<Stylist>{};
@@ -78,10 +79,10 @@ namespace HairSalon
       SqlDataReader rdr;
       conn.Open();
 
-      SqlCommand cmd = new SqlCommand("insert into clients (name) output inserted.id values (@CategoryName);", conn);
+      SqlCommand cmd = new SqlCommand("insert into stylists (name) output inserted.id values (@StylistName);", conn);
 
       SqlParameter nameParameter = new SqlParameter();
-      nameParameter.ParameterName = "@CategoryName";
+      nameParameter.ParameterName = "@StylistName";
       nameParameter.Value = this.GetName();
       cmd.Parameters.Add(nameParameter);
       rdr = cmd.ExecuteReader();
@@ -98,6 +99,42 @@ namespace HairSalon
       {
         conn.Close();
       }
+    }
+
+    public static void DeleteAll()
+    {
+      SqlConnection conn = DB.Connection();
+      conn.Open();
+      SqlCommand cmd = new SqlCommand("DELETE FROM stylists;", conn);
+      cmd.ExecuteNonQuery();
+    }
+
+    public void Delete()
+    {
+      SqlConnection conn = DB.Connection();
+      conn.Open();
+
+      sqlCommand cmd = new SqlCommand("DELETE from stylists WHERE id = @StylistId; DELETE from clients WHERE client_id = @StylistId;", conn);
+
+      SqlParameter stylistIdParameter = new SqlParameter();
+      stylistIdParameter.ParameterName = "@StylistId";
+      stylistIdParameter.Value = this.GetId();
+
+      cmd.Parameters.Add(stylistIdParameter);
+      cmd.ExecuteNonQuery();
+
+      if (conn != null)
+      {
+        conn.Close()
+      }
+    }
+    public static Stylist Find(int id)
+    {
+      SqlConnection conn = DB.Connection();
+      SqlDataReader rdr = null;
+      Conn.Open();
+
+      SqlCommand cmd = new SqlCommand("SELECT * FROM stylists WHERE id = @StylistId;", conn);
     }
   }
 }
