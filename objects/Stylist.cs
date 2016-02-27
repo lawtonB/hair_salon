@@ -176,7 +176,7 @@ namespace HairSalon
         stylistIdParameter.ParameterName = "@StylistId";
         stylistIdParameter.Value = this.GetId();
         cmd.Parameters.Add(stylistIdParameter);
-        cmd.ExecuteReader();
+        rdr = cmd.ExecuteReader();
 
         List<Client> clients = new List<Client> {};
         while(rdr.Read())
