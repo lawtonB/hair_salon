@@ -40,6 +40,7 @@ namespace HairSalon
         model.Add("stylists", AllStylists);
         Return View["clients.cshtml", model];
       };
+
       Post["/stylists/{id}/new"] = parameters => {
         Client newClient = new Client(Request.form["name"], Request.Form["stylist-id"]);
         newClient.Save();
@@ -52,7 +53,6 @@ namespace HairSalon
         model.Add("stylists", AllStylists);
         return View["clients.cshtml", model];
       };
-      }
     }
   }
 }

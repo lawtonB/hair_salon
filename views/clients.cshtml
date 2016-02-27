@@ -1,0 +1,15 @@
+<p>@Model["stylist"].GetName()'s customers'</p>
+
+@if )@Model["clients"].Count == 0)
+{
+  <p>no clients added</p>
+}
+else
+{
+<ol>
+  @foreach (var client in @Model["clients"])
+  {
+    
+  }
+</ol>
+}
