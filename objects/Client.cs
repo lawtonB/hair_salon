@@ -51,9 +51,9 @@ namespace HairSalon
       return _stylist_id;
     }
 
-    public void SetStylelistId(int newStylelistId)
+    public void SetStylistId(int newStylistId)
     {
-      _stylist_id = newStylelistId;
+      _stylist_id = newStylistId;
     }
 
     public static List<Client> GetAll()

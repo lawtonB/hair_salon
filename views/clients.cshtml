@@ -1,6 +1,6 @@
-<p>@Model["stylist"].GetName()'s customers'</p>
+<p>@Model["stylist"].GetName()'s customers</p>
 
-@if )@Model["clients"].Count == 0)
+@if (@Model["clients"].Count == 0)
 {
   <p>no clients added</p>
 }
@@ -9,7 +9,15 @@ else
 <ol>
   @foreach (var client in @Model["clients"])
   {
-    
+    <li>
+      @client.Getname() <br>
+      <a href="Client/edit/@client.GetId()">edit</a>
+      <form action="/client/delete/@client.GetId()" method="post">
+        <input type="hidden" name="_method" value="DELETE">
+        <button type="submit" name="button">delete</button>
+      </form>
+    </li>
   }
 </ol>
 }
+<p><a href="/stylists">stylist index</a></p>
