@@ -53,7 +53,7 @@ namespace HairSalon
     public void Test_Save_AssignsIdToStylistObject()
     {
       //Arrange
-      Stylist testStylist = new Stylist("john", 1);
+      Stylist testStylist = new Stylist("john");
       testStylist.Save();
 
       //Act

@@ -1,4 +1,4 @@
-<p>@Model["stylist"].GetName()'s customers</p>
+<p>@Model["stylist"].GetName()'s clients</p>
 
 @if (@Model["clients"].Count == 0)
 {
@@ -10,7 +10,7 @@ else
   @foreach (var client in @Model["clients"])
   {
     <li>
-      @client.Getname() <br>
+      @client.GetName() <br>
       <a href="Client/edit/@client.GetId()">edit</a>
       <form action="/client/delete/@client.GetId()" method="post">
         <input type="hidden" name="_method" value="DELETE">
@@ -20,4 +20,18 @@ else
   }
 </ol>
 }
+<p>Add Stylist Client</p>
+  <form action='/stylists/@Model["stylist"].GetId()/new' method="post">
+    <label for="name">name</label>
+    <input id="name" name="name" type="text">
+
+    <label for="stylist-id">Stylist</label>
+    <select name="stylist-id">
+      @foreach(var stylist in @Model["stylists"])
+      {
+        <option value = "@stylist.GetId()">@stylist.GetName()</option>
+      }
+    </select>
+    <button type="submit">add client</button>
+  </form>
 <p><a href="/stylists">stylist index</a></p>
