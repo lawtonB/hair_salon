@@ -1,5 +1,9 @@
 <p>Change @Model.GetName()</p>
 <form action="/client/edit/@Model.GetId()" method="post">
-  <input type="hidden" name="_method" value="">
-
+  <input type="hidden" name="_method" value="PATCH">
+  <input type="hidden" name="client-id" value="@Model.GetId()">
+  <label for="client-name">new name</label>
+  <input id="client-name" name="client-name" type="text">
+  <button type="submit">Submit</button>
 </form>
+<p><a href="stylists">Stylist Index</a></p>

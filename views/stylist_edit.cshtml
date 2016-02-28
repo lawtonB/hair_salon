@@ -1,0 +1,9 @@
+<p>Change @Model.GetName()</p>
+<form action="/stylist/edit/@Model.GetId()" method="post">
+  <input type="hidden" name="_method" value="PATCH">
+  <input type="hidden" name="stylist-id" value="@Model.GetId()">
+  <label for="stylist-name">new name</label>
+  <input id="stylist-name" name="stylist-name" type="text">
+  <button type="submit">Submit</button>
+</form>
+<p><a href="stylists">Stylist Index</a></p>
