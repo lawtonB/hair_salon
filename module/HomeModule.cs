@@ -70,7 +70,7 @@ namespace HairSalon
         Stylist SelectedStylist = Stylist.Find(parameters.id);
         SelectedStylist.Delete();
         List<Stylist> AllStylists = Stylist.GetAll();
-        return View["stylists.cshtml"];
+        return View["stylists.cshtml", AllStylists];
       };
 
       Get["/client/edit/{id}"] = parameters => {
