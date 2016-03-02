@@ -10,7 +10,7 @@ namespace HairSalon
     private string _name;
     private int _stylist_id;
 
-    public Client(string Name, int Stylist_Id = 0, int Id = 0)
+    public Client(string Name, int Stylist_Id, int Id = 0)
     {
       _id = Id;
       _name = Name;
@@ -71,7 +71,8 @@ namespace HairSalon
     {
       int clientId = rdr.GetInt32(0);
       string clientName = rdr.GetString(1);
-      Client newClient = new Client(clientName, clientId);
+      int stylistId = rdr.GetInt32(2);
+      Client newClient = new Client(clientName, stylistId, clientId);
       allClients.Add(newClient);
     }
 
@@ -92,12 +93,18 @@ namespace HairSalon
       SqlDataReader rdr;
       conn.Open();
 
-      SqlCommand cmd = new SqlCommand("INSERT INTO clients (name) OUTPUT INSERTED.id VALUES (@ClientName);", conn);
+      SqlCommand cmd = new SqlCommand("INSERT INTO clients (name, client_id) OUTPUT INSERTED.id VALUES (@ClientName, @ClientId);", conn);
 
       SqlParameter nameParameter = new SqlParameter();
       nameParameter.ParameterName = "@ClientName";
       nameParameter.Value = this.GetName();
+
+      SqlParameter ClientIdParameter = new SqlParameter();
+      ClientIdParameter.ParameterName = "@ClientId";
+      ClientIdParameter.Value = this.GetStylistId().ToString();
+
       cmd.Parameters.Add(nameParameter);
+      cmd.Parameters.Add(ClientIdParameter);
       rdr = cmd.ExecuteReader();
 
       while(rdr.Read())

@@ -57,12 +57,13 @@ namespace HairSalon
 
       //Act
       Client savedClient = Client.GetAll()[0];
-
+      Console.WriteLine(savedClient.GetStylistId() + "this is the test");
       int result = savedClient.GetId();
       int testId = testClient.GetId();
 
       //Assert
       Assert.Equal(testId, result);
+
     }
 
     [Fact]
