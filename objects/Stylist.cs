@@ -114,7 +114,7 @@ namespace HairSalon
       SqlConnection conn = DB.Connection();
       conn.Open();
 
-      SqlCommand cmd = new SqlCommand("DELETE from stylists WHERE id = @StylistId; DELETE from clients WHERE client_id = @StylistId;", conn);
+      SqlCommand cmd = new SqlCommand("DELETE from stylists WHERE id = @StylistId; DELETE from clients WHERE stylist_id = @StylistId;", conn);
 
       SqlParameter stylistIdParameter = new SqlParameter();
       stylistIdParameter.ParameterName = "@StylistId";
