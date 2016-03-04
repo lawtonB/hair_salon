@@ -93,7 +93,7 @@ namespace HairSalon
       SqlDataReader rdr;
       conn.Open();
 
-      SqlCommand cmd = new SqlCommand("INSERT INTO clients (name, client_id) OUTPUT INSERTED.id VALUES (@ClientName, @ClientId);", conn);
+      SqlCommand cmd = new SqlCommand("INSERT INTO clients (name, stylist_id) OUTPUT INSERTED.id VALUES (@ClientName, @ClientId);", conn);
 
       SqlParameter nameParameter = new SqlParameter();
       nameParameter.ParameterName = "@ClientName";
