@@ -158,18 +158,21 @@ namespace HairSalon
         SqlParameter ClientIdParameter = new SqlParameter();
         ClientIdParameter.ParameterName = "@ClientId";
         ClientIdParameter.Value = id.ToString();
+
         cmd.Parameters.Add(ClientIdParameter);
         rdr = cmd.ExecuteReader();
 
         int foundClientId = 0;
         string foundClientName = null;
+        int foundStylistId = 0;
 
         while(rdr.Read())
         {
           foundClientId = rdr.GetInt32(0);
           foundClientName = rdr.GetString(1);
+          foundStylistId = rdr.GetInt32(2);
         }
-        Client foundClient = new Client(foundClientName, foundClientId);
+        Client foundClient = new Client(foundClientName, foundStylistId, foundClientId);
 
         if (rdr != null)
         {

@@ -138,6 +138,7 @@ namespace HairSalon
         SqlParameter stylistIdParameter = new SqlParameter();
         stylistIdParameter.ParameterName = "@StylistId";
         stylistIdParameter.Value = id.ToString();
+
         cmd.Parameters.Add(stylistIdParameter);
         rdr = cmd.ExecuteReader();
 
@@ -170,20 +171,23 @@ namespace HairSalon
         SqlDataReader rdr = null;
         conn.Open();
 
-        SqlCommand cmd = new SqlCommand("select * from clients where id = @StylistId;", conn);
+        SqlCommand cmd = new SqlCommand("select * from clients where stylist_id = @StylistId;", conn);
 
         SqlParameter stylistIdParameter = new SqlParameter();
         stylistIdParameter.ParameterName = "@StylistId";
         stylistIdParameter.Value = this.GetId();
+
         cmd.Parameters.Add(stylistIdParameter);
         rdr = cmd.ExecuteReader();
 
+        Console.WriteLine("hi!!!!!! {0}");
         List<Client> clients = new List<Client> {};
         while(rdr.Read())
         {
           int clientId = rdr.GetInt32(0);
           string clientName = rdr.GetString(1);
           int ClientStylistId = rdr.GetInt32(2);
+          Console.WriteLine("here i am!!!!!!!!!");
           Client newClient = new Client(clientName, ClientStylistId, clientId);
           clients.Add(newClient);
         }
